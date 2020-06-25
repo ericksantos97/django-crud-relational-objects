@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <ul>
+        {% for filme in filmes %}
+
+            
+
+
+            <a href="{% url 'update_filme' filme.id %}">
+                <li> {{ filme.nome }} - {{ filme.sinopse }} - {{ filme.anoLancamento }}
+                    - {{ filme.diretor.nome }} - {{ filme.genero.descricao }} </li>
+            </a>
+        {% endfor %}
+    </ul>
+
+    <a class="btn btn-primary" href="{% url 'create_filme' %}">Novo</a>
+{% endblock %}
