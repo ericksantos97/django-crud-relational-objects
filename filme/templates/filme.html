@@ -1,18 +1,32 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <ul>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Sinopse</th>
+            <th scope="col">Ano Lançamento</th>
+            <th scope="col">Diretor</th>
+            <th scope="col">Gênero</th>
+            <th scope="col">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for filme in filmes %}
-
-            
-
-
-            <a href="{% url 'update_filme' filme.id %}">
-                <li> {{ filme.nome }} - {{ filme.sinopse }} - {{ filme.anoLancamento }}
-                    - {{ filme.diretor.nome }} - {{ filme.genero.descricao }} </li>
-            </a>
+            <tr>
+                <td>{{ filme.nome }}</td>
+                <td>{{ filme.sinopse }}</td>
+                <td>{{ filme.anoLancamento }}</td>
+                <td>{{ filme.diretor.nome }}</td>
+                <td>{{ filme.genero.descricao }}</td>
+                <td><a href="{% url 'update_filme' filme.id %}" class="btn btn-success">Editar</a></td>
+                <td><a href="{% url 'delete_filme' filme.id %}" class="btn btn-danger">Excluir</a></td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
 
     <a class="btn btn-primary" href="{% url 'create_filme' %}">Novo</a>
 {% endblock %}
